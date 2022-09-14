@@ -4,3 +4,4 @@ model2 ansible_host=51.250.70.228  ansible_ssh_user=worker
 model3 ansible_host=51.250.5.137   ansible_ssh_user=worker
 model3 ansible_host= ansible_ssh_user=worker
 model5 ansible_host= ansible_ssh_user=worker
+model4 ansible_host= ansible_ssh_user=worker
