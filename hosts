@@ -1,0 +1,4 @@
+[models]
+model1 ansible_host=178.154.202.46
+model2 ansible_host=51.250.70.228
+model3 ansible_host=178.154.206.43
