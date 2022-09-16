@@ -47,15 +47,15 @@
         state: present
 
 
-    - name: adding existing user "{{ remote_user }}" to group docker
+    - name: adding existing user "{{ ansible_become_user }}" to group docker
       user:
-        name: "{{ remote_user }}"
+        name: "{{ ansible_become_user }}"
         groups: docker
         append: yes
 
 
     - name: Install docker-compose
-      remote_user: "{{ remote_user }}"
+      remote_user: "{{ ansible_become_user }}"
       get_url: 
         url : https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64
         dest: /usr/local/bin/docker-compose
