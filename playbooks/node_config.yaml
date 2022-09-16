@@ -1,5 +1,5 @@
 ---
-- hosts: {{ hostname }}
+- hosts: "{{ hostname }}"
   become: yes
 
   tasks:
@@ -47,7 +47,7 @@
         state: present
 
 
-    - name: adding existing user {{ ansible_user  }} to group sudo
+    - name: adding existing user "{{ ansible_user  }}" to group docker
       user:
         name: {{ ansible_user  }}
         groups: docker
