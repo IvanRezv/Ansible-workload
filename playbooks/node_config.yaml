@@ -46,6 +46,14 @@
           - containerd.io
         state: present
 
+
+    - name: adding existing user "{{ user }}" to group sudo
+      user:
+        name: "{{ user }}"
+        groups: docker
+        append: yes
+
+
     - name: Install docker-compose
       get_url: 
         url : https://github.com/docker/compose/releases/download/1.25.1-rc1/docker-compose-Linux-x86_64
