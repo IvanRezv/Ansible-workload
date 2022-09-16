@@ -4,3 +4,4 @@ node2 ansible_host= ansible_ssh_user=worker
 node33 ansible_host= ansible_ssh_user=worker
 bash ansible_host= ansible_ssh_user=worker
 node2 ansible_host= ansible_ssh_user=worker
+node2 ansible_host=51.250.9.208 ansible_ssh_user=worker
