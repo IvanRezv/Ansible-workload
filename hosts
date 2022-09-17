@@ -1,4 +1,3 @@
 [models]
 jenkins ansible_host=51.250.75.37 ansible_ssh_user=worker
-model1 ansible_host=51.250.4.36 ansible_ssh_user=worker
 model2 ansible_host=51.250.78.39 ansible_ssh_user=worker
