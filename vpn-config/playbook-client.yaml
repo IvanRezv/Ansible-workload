@@ -36,10 +36,10 @@
       mode: '0600'
     notify: restart wireguard
 
-handlers:
-  # Restarts WireGuard interface, loading any new config and running PostUp
-  # commands in the process. Notify this handler on client config changes.
-  - name: restart wireguard
-    shell: wg-quick down wg0; wg-quick up wg0
-    args:
-      executable: /bin/bash
+  handlers:
+    # Restarts WireGuard interface, loading any new config and running PostUp
+    # commands in the process. Notify this handler on client config changes.
+    - name: restart wireguard
+      shell: wg-quick down wg0; wg-quick up wg0
+      args:
+        executable: /bin/bash
