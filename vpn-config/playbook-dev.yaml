@@ -1,6 +1,7 @@
 ---
 - name: setup vpn server
   hosts: vpn_server
+  vars:
 
   tasks:
   - name: install wireguard package
