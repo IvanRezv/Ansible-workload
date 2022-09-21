@@ -11,35 +11,34 @@
           31333530633633326562336633336136626264666561353530663263353138303730633636366663
           6135306266663163323135366632383361356330346335303866
     server_pubkey: JGHqhTP98kCk2208GMCNAchlo9qM3coS4RIFGh7wVl4=
-
   tasks:
-    - name: install wireguard package
-      apt:
-        name: wireguard
-        state: present
-        update_cache: yes
+  - name: install wireguard package
+    apt:
+      name: wireguard
+      state: present
+      update_cache: yes
 
 
-    - name: create server wireguard config
-      template:
-        dest: /etc/wireguard/wg0.conf
-        src: server_wg0.conf.j2
-        owner: root
-        group: root
-        mode: '0600'
+  - name: create server wireguard config
+    template:
+      dest: /etc/wireguard/wg0.conf
+      src: server_wg0.conf.j2
+      owner: root
+      group: root
+      mode: '0600'
 
 
-    - name: enable and persist ip forwarding
-      sysctl:
-        name: net.ipv4.ip_forward
-        value: "1"
-        state: present
-        sysctl_set: yes
-        reload: yes
+  - name: enable and persist ip forwarding
+    sysctl:
+      name: net.ipv4.ip_forward
+      value: "1"
+      state: present
+      sysctl_set: yes
+      reload: yes
 
 
-    - name: start wireguard and enable on boot
-      systemd:
-        name: wg-quick@wg0
-        enabled: yes
-        state: started
+  - name: start wireguard and enable on boot
+    systemd:
+      name: wg-quick@wg0
+      enabled: yes
+      state: started
