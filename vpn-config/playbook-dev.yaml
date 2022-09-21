@@ -2,7 +2,6 @@
 - name: setup vpn server
   hosts: vpn_server
 
-
   tasks:
   - name: install wireguard package
     apt:
