@@ -4,50 +4,42 @@
   vars:
 
   tasks:
-    - name: setup vpn clients
-      hosts: localhost
-      connection: local
-      become: yes
-      vars:
-        # Use system python so apt package is available
-        ansible_python_interpreter: "/usr/bin/env python"
-      tasks:
-        - name: install wireguard package
-          apt:
-            name: wireguard
-            state: present
-            update_cache: yes
+  - name: install wireguard package
+    apt:
+      name: wireguard
+      state: present
+      update_cache: yes
 
-        - name: generate private key
-          shell:
-            cmd: umask 077 && wg genkey | tee privatekey | wg pubkey > publickey
-            chdir: /etc/wireguard
-            creates: /etc/wireguard/publickey
+  - name: generate private key
+    shell:
+      cmd: umask 077 && wg genkey | tee privatekey | wg pubkey > publickey
+      chdir: /etc/wireguard
+      creates: /etc/wireguard/publickey
 
-        - name: get public key
-          command: cat /etc/wireguard/publickey
-          register: publickey_contents
-          changed_when: False
+  - name: get public key
+    command: cat /etc/wireguard/publickey
+    register: publickey_contents
+    changed_when: False
 
-        # Save results as a fact, so we can use it when templating wg0.conf for the
-        # server
-        - name: set public key fact
-          set_fact:
-            pubkey: "{{ publickey_contents.stdout }}"
+  # Save results as a fact, so we can use it when templating wg0.conf for the
+  # server
+  - name: set public key fact
+    set_fact:
+      pubkey: "{{ publickey_contents.stdout }}"
 
-        - name: create client wireguard config
-          template:
-            dest: /etc/wireguard/wg0.conf
-            src: client_wg0.conf.j2
-            owner: root
-            group: root
-            mode: '0600'
-          notify: restart wireguard
+  - name: create client wireguard config
+    template:
+      dest: /etc/wireguard/wg0.conf
+      src: server_wg0.conf.j2
+      owner: root
+      group: root
+      mode: '0600'
+    notify: restart wireguard
 
-      handlers:
-        # Restarts WireGuard interface, loading any new config and running PostUp
-        # commands in the process. Notify this handler on client config changes.
-        - name: restart wireguard
-          shell: wg-quick down wg0; wg-quick up wg0
-          args:
-            executable: /bin/bash
+handlers:
+  # Restarts WireGuard interface, loading any new config and running PostUp
+  # commands in the process. Notify this handler on client config changes.
+  - name: restart wireguard
+    shell: wg-quick down wg0; wg-quick up wg0
+    args:
+      executable: /bin/bash
