@@ -1,0 +1,12 @@
+---
+- name: setup vpn server
+  hosts: vpn_server
+  vars:
+    server_privkey:
+    server_pubkey:
+
+  tasks:
+    apt:
+      name: wireguard
+      state: present
+      update_cache: yes
