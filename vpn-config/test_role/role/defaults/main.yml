@@ -1,5 +1,6 @@
 default_route: false
 wg_private_ip: "10.0.0.1"
 wg_listen_port: "51820"
-wg_allowed_ips: "{% if default_route %}0.0.0.0/0,::/0{% endif %}"
+wg_allowed_ips: "0.0.0.0/0"
 wg_download_path: "~/Downloads"
+pers_count: 20
