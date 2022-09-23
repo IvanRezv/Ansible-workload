@@ -1,0 +1,2 @@
+[machine]
+vpn ansible_host=185.104.112.207 ansible_ssh_user=root

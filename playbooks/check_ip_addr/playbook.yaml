@@ -1,0 +1,15 @@
+---
+- name: setup vpn server
+  hosts: vpn
+  vars:
+
+  tasks:
+  - name: check public_ip
+    uri:
+      url: "https://ipinfo.io/ip"
+      remote_src: yes
+      return_content: yes
+    register: public_ip_addr
+
+  - debug:
+      msg: "{{ public_ip_addr['content'] }}"
