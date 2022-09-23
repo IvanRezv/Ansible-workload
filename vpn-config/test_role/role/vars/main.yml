@@ -1,3 +1,4 @@
 ---
 wg_user_list:
-  user_1: { username: "ivan", private_ip: "10.0.0.11", default_route: yes, wg_dns_enabled: yes, remove: no }
+  user_1: { username: "ivan", private_ip: "10.0.0.2", default_route: yes, wg_dns_enabled: yes, remove: no }
+  user_2: { username: "nikita_ph", private_ip: "10.0.0.3", default_route: yes, wg_dns_enabled: yes, remove: no }

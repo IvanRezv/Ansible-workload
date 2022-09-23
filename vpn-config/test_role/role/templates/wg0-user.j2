@@ -2,7 +2,7 @@
 Address = {{ item.item.value.private_ip }}/24
 PrivateKey = {{ item['content'] | b64decode | replace('\n', '')}}
 {% if item.item.value.wg_dns_enabled %}
-DNS = {{ wg_private_ip }}
+DNS = 8.8.8.8
 {% endif %}
 
 [Peer]
