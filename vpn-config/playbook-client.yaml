@@ -12,12 +12,12 @@
 
   - name: generate private key
     shell:
-      cmd: umask 077 && wg genkey | tee privatekey | wg pubkey > publickey
+      cmd: umask 077 && wg genkey | tee privatekey_test | wg pubkey > publickey_test
       chdir: /etc/wireguard
-      creates: /etc/wireguard/publickey
+      creates: /etc/wireguard/publickey_test
 
   - name: get public key
-    command: cat /etc/wireguard/publickey
+    command: cat /etc/wireguard/publickey_test
     register: publickey_contents
     changed_when: False
 

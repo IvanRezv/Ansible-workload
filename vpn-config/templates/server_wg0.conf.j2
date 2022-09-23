@@ -7,6 +7,6 @@ PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -t nat -A POSTROUTING -o 
 PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -t nat -D POSTROUTING -o ens3 -j MASQUERADE
 
 [Peer]
-PublicKey = {{ server_pubkey }}
+PublicKey = {{ publickey_contents.stdout }}
 Endpoint = {{ hostvars['vpn_server'].ansible_host }}:51820
 AllowedIPs = 10.0.0.2/24
