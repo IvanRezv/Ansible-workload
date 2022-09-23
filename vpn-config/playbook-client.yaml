@@ -18,14 +18,14 @@
 
   - name: get public key
     command: cat /etc/wireguard/{{ public_key }}
-    register: publickey_contents
+    register: {{ public_key }}
     changed_when: False
 
   # Save results as a fact, so we can use it when templating wg0.conf for the
   # server
   - name: set public key fact
     set_fact:
-      pubkey: "{{ publickey_contents.stdout }}"
+      pubkey: "{{ public_key.stdout }}"
 
   - name: create client wireguard config
     template:
