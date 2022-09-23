@@ -21,6 +21,9 @@
     register: user_key
     changed_when: False
 
+  - name: testing
+    debug: {{ public_key }}-client={{ user_key.stdout }}
+
   # Save results as a fact, so we can use it when templating wg0.conf for the
   # server
   - name: set public key fact
