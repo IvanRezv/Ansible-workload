@@ -14,7 +14,7 @@
     shell:
       cmd: umask 077 && wg genkey | tee {{ private_key }} | wg pubkey > {{ public_key }}
       chdir: /etc/wireguard
-      creates: /etc/wireguard/publickey_test
+      creates: /etc/wireguard/{{ public_key }}
 
   - name: get public key
     command: cat /etc/wireguard/{{ public_key }}
