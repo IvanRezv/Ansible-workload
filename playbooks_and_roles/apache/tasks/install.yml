@@ -1,10 +1,22 @@
 ---
+- name: Check Ansible version
+  command: ansible --version
+  register: ansibleVersion
+
+
+- name: Print os version
+  debug:
+    msg: "OS Family: {{ ansible_os_family }}"
+
+
 - name: Update aptitude
   apt:
     upgrade: full
     update_cache: yes
     autoclean: yes
     autoremove: yes
+  when:
+    - ansible_os_family == "Debian"
 
 
 - name: Update aptitude
@@ -13,21 +25,15 @@
     update_cache: yes
     autoclean: yes
     autoremove: yes
-
-
-- name: Install Apache
-  apt:
-    name: apache2
-    update_cache: yes
-    state: latest
-  when:
-    - ansible_os_family == "Debian"
-
-
-- name: Install Apache
-  apt:
-    name: httpd
-    update_cache: yes
-    state: latest
   when:
     - ansible_os_family == "RedHat"
+
+
+- name: Install Apache
+  vars_files:
+    - "vars/common.yml"
+    - "vars/{{ ansible_os_family }}.yml"
+  apt:
+    name: "{{ apache_name }}"
+    update_cache: yes
+    state: latest
