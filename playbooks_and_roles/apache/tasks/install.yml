@@ -29,10 +29,11 @@
     - ansible_os_family == "RedHat"
 
 
+- name: include needed variables
+  include_vars: "{{ ansible_os_family }}.yml"
+
+
 - name: Install Apache
-  vars_files:
-    - "vars/common.yml"
-    - "vars/{{ ansible_os_family }}.yml"
   apt:
     name: "{{ apache_name }}"
     update_cache: yes
