@@ -1,2 +1,7 @@
 ---
 # defaults file for apache
+app_user: "www-data"
+http_host: "ivan-site.com"
+http_conf: "ivan-side.conf"
+http_port: "80"
+disable_default: true
