@@ -1,8 +1,8 @@
 ---
 galaxy_info:
-  author: John Freeman
+  author: John Freeman and Ivan Rezvetsov
   role_name: helm
-  description: Ansible role for downloading and installing Helm the package manager for Kubernetes.
+  description: Ansible role for downloading and installing Helm the package manager and kubectl binary executor for Kubernetes.
   company: GantSign Ltd.
   license: MIT
   min_ansible_version: 2.9
@@ -31,3 +31,6 @@ galaxy_info:
     - k8s
     - development
 dependencies: []
+
+### https://github.com/githubixx/ansible-role-kubectl
+### https://github.com/gantsign/ansible_role_helm
