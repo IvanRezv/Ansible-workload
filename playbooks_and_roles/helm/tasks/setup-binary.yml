@@ -9,6 +9,7 @@
     - kubectl
 
 - name: Copy kubectl binary to destination directory
+  become: yes
   ansible.builtin.copy:
     src: "{{ kubectl_tmp_directory }}/{{ item }}"
     dest: "{{ kubectl_bin_directory }}/{{ item }}"
