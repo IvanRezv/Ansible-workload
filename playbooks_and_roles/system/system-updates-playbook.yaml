@@ -1,6 +1,6 @@
 ---
 - hosts: machine
-#  become: yes
+  become: yes
 
   tasks:
     - name: Install system updates for centos systems
@@ -29,6 +29,14 @@
           - curl
           - wget
           - nano
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - make
+          - gnupg-agent
+          - software-properties-common
+          - build-essential
+          - python3-pip
         state: latest
         update_cache: yes
         #cache_valid_time: 3600
@@ -42,6 +50,14 @@
           - curl
           - wget
           - nano
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - make
+          - gnupg-agent
+          - software-properties-common
+          - build-essential
+          - python3-pip
         state: latest
         update_cache: yes
         #cache_valid_time: 3600
