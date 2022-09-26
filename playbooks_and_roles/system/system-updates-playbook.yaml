@@ -3,7 +3,7 @@
   become: yes
 
   tasks:
-    - name: Install system updates for centos systems
+    - name: Install system updates for RedHat systems
       yum:
         name: '*'
         state: latest
@@ -13,7 +13,7 @@
         - ansible_os_family == "RedHat"
         - ansible_distribution == "CentOS"
 
-    - name: Install system updates for ubuntu systems
+    - name: Install system updates for Debian systems
       apt:
         name: '*'
         state: latest
@@ -23,7 +23,7 @@
         - ansible_os_family == "Debian"
         - ansible_distribution == "Ubuntu"
 
-    - name: Install CLI tools centos
+    - name: Install CLI tools RedHat
       yum:
         name:
           - curl
@@ -44,7 +44,7 @@
         - ansible_os_family == "RedHat"
         - ansible_distribution == "CentOS"
 
-    - name: Install CLI tools ubuntu
+    - name: Install CLI tools Debian
       apt:
         name:
           - curl
