@@ -44,8 +44,8 @@
           - ansible_os_family == "RedHat"
           - ansible_distribution == "CentOS"
 
-    - name: Install CLI tools centos
-      yum:
+    - name: Install CLI tools ubuntu
+      apt:
         name:
           - curl
           - wget
