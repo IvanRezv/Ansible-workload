@@ -1,0 +1,33 @@
+---
+- name: Update aptitude
+  apt:
+    upgrade: full
+    update_cache: yes
+    autoclean: yes
+    autoremove: yes
+
+
+- name: Update aptitude
+  yum:
+    upgrade: full
+    update_cache: yes
+    autoclean: yes
+    autoremove: yes
+
+
+- name: Install Apache
+  apt:
+    name: apache2
+    update_cache: yes
+    state: latest
+  when:
+    - ansible_os_family == "Debian"
+
+
+- name: Install Apache
+  apt:
+    name: httpd
+    update_cache: yes
+    state: latest
+  when:
+    - ansible_os_family == "RedHat"
