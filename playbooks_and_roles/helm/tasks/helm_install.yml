@@ -2,13 +2,13 @@
 - name: install Helm
   become: yes
   unarchive:
-    src: '{{ helm_download_dir }}/{{ helm_redis_filename }}'
+    src: '{{ download_dir }}/{{ helm_redis_filename }}'
     remote_src: yes
     dest: '{{ helm_install_dir }}'
     extra_opts:
       - '--strip-components=1'
-    owner: root
-    group: root
+    owner: "{{ owner }}"
+    group: "{{ group }}"
     mode: 'o-w'
     creates: '{{ helm_install_dir }}/helm'
 
@@ -18,6 +18,6 @@
     src: '{{ helm_install_dir }}/helm'
     dest: '/usr/local/bin/helm'
     state: link
-    owner: root
-    group: root
-    mode: 'u=rwx,go=rx'
+    owner: "{{ owner }}"
+    group: "{{ group }}"
+    mode: "{{ binary_mode }}"
