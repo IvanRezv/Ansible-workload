@@ -1,0 +1,13 @@
+- name: include needed system variables
+  include_vars: "{{ ansible_os_family }}.yml"
+
+
+- name: Reload Apache
+  service:
+    name: "{{ apache_name }}"
+    state: reloaded
+
+- name: Restart Apache
+  service:
+    name: "{{ apache_name }}"
+    state: restarted
