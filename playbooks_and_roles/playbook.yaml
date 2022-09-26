@@ -1,6 +1,5 @@
 - hosts: vpn
   gather_facts: yes
-  become: yes
 
   roles:
-    - apache
+    - helm
