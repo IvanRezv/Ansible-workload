@@ -9,7 +9,7 @@
     msg: "OS Family: {{ ansible_os_family }}"
 
 
-- name: Update aptitude
+- name: Update aptitude debian based
   apt:
     upgrade: full
     update_cache: yes
@@ -19,7 +19,7 @@
     - ansible_os_family == "Debian"
 
 
-- name: Update aptitude
+- name: Update aptitude centos based
   yum:
     upgrade: full
     update_cache: yes

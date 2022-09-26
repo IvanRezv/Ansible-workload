@@ -2,3 +2,6 @@
 
 - include_tasks: install.yml
   tags: install
+
+- include_tasks: configure.yml
+  tags: configure
