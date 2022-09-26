@@ -5,20 +5,17 @@ helm_version: "3.9.4"
 kubectl_version: "1.25.0"
 
 
----
 architecture: "amd64" # other possible values: "386","arm64","arm","ppc64le","s390x"
 # Operating system on which "kubectl" should run on
 kubectl_os: "linux"  # use "darwin" for MacOS X, "windows" for Windows
 
 
----
 # Owner of binaries
 owner: "root"
 # Group of binaries
 group: "root"
 
 
----
 download_dir: "{{ x_ansible_download_dir | default(ansible_env.HOME + '/.ansible/tmp/downloads') }}"
 # Specifies the permissions of the binaries
 binary_mode: "0755"
