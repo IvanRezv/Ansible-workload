@@ -26,6 +26,9 @@
     --run-untagged="{{ shel_run_untagged }}" \
     --locked="false"
 
+
+# https://github.com/mesosphere-backup/dcos-gitlab-runner-service/blob/master/docs/gitlab_runner_register_arguments.md
+-
 # CMD
 
 #gitlab-runner register --non-interactive -r 'asasdasdasd' \
