@@ -1,18 +1,18 @@
 ---
 - name: Register gitlab docker runner
-    command: |
-      gitlab-runner register \
-      --non-interactive \
-      --url "{{ git_url }}" \
-      --registration-token "{{ reg_token }}" \
-      --executor "docker" \
-      --docker-image "{{ docker_image_executor }}" \
-      --description "{{ docker_description }}" \
-      --tag-list "{{ docker_tags }}" \
-      --docker-pull-policy always \
-      --docker-tlsverify false \
-      --run-untagged="{{ docker_run_untagged }}" \
-      --locked="false"
+  command: |
+    gitlab-runner register \
+    --non-interactive \
+    --url "{{ git_url }}" \
+    --registration-token "{{ reg_token }}" \
+    --executor "docker" \
+    --docker-image "{{ docker_image_executor }}" \
+    --description "{{ docker_description }}" \
+    --tag-list "{{ docker_tags }}" \
+    --docker-pull-policy always \
+    --docker-tlsverify false \
+    --run-untagged="{{ docker_run_untagged }}" \
+    --locked="false"
 
 - name: Register gitlab shell runner
   command: |
