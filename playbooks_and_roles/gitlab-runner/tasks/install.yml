@@ -11,7 +11,7 @@
   become: yes
   user:
     name: "{{ runner_user }}"
-    password: "{{ runner_password }}"
+    password: "{{ runner_password | password_hash('sha512') }}"
     groups:
      - docker
      - sudo
