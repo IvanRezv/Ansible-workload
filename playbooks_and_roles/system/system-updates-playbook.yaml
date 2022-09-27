@@ -24,43 +24,79 @@
         - ansible_distribution == "Ubuntu"
 
     - name: Install CLI tools RedHat
-      yum:
-        name:
-          - curl
-          - wget
-          - nano
-          - apt-transport-https
-          - ca-certificates
-          - curl
-          - make
-          - gnupg-agent
-          - software-properties-common
-          - build-essential
-          - python3-pip
-        state: latest
-        update_cache: yes
-        #cache_valid_time: 3600
+      block:
+        - name: Install packages
+          yum:
+            name:
+              - curl
+              - wget
+              - nano
+              - apt-transport-https
+              - ca-certificates
+              - curl
+              - make
+              - gnupg-agent
+              - software-properties-common
+              - build-essential
+              - python3-pip
+            state: latest
+            update_cache: yes
+            #cache_valid_time: 3600
+
+        - name: Immediately update pip for latest version
+          pip:
+            name:
+              - pip
+            state: latest
+
+        - name: Install ansible and etc
+          pip:
+            name:
+              - python-gitlab<=1.12.1
+              - virtualenv
+              - setuptools
+              - ansible
+
+      become: yes
       when:
         - ansible_os_family == "RedHat"
         - ansible_distribution == "CentOS"
 
     - name: Install CLI tools Debian
-      apt:
-        name:
-          - curl
-          - wget
-          - nano
-          - apt-transport-https
-          - ca-certificates
-          - curl
-          - make
-          - gnupg-agent
-          - software-properties-common
-          - build-essential
-          - python3-pip
-        state: latest
-        update_cache: yes
-        #cache_valid_time: 3600
+      block:
+        - name: Install packages
+          apt:
+            name:
+              - curl
+              - wget
+              - nano
+              - apt-transport-https
+              - ca-certificates
+              - curl
+              - make
+              - gnupg-agent
+              - software-properties-common
+              - build-essential
+              - python3-pip
+            state: latest
+            update_cache: yes
+            #cache_valid_time: 3600
+
+        - name: Immediately update pip for latest version
+            pip:
+              name:
+                - pip
+              state: latest
+
+        - name: Install ansible and etc
+          pip:
+            name:
+              - python-gitlab<=1.12.1
+              - virtualenv
+              - setuptools
+              - ansible
+
+      become: yes
       when:
         - ansible_os_family == "Debian"
         - ansible_distribution == "Ubuntu"
