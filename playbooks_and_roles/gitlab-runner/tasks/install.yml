@@ -22,6 +22,7 @@
     home: "{{ home_dir }}"  # Defaults to /home/<username>
 
 - name: Runner start
+  become: yes
   shell: |
-    sudo gitlab-runner install --user={{ runner_user }} --working-directory={{ home_dir }}; \
-    sudo gitlab-runner start
+    gitlab-runner install --user={{ runner_user }} --working-directory={{ home_dir }}; \
+    gitlab-runner start
