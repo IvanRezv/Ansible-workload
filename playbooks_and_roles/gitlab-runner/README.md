@@ -1,22 +1,63 @@
-Role Name
+gitlab-runner binary role
 =========
+[![License](https://img.shields.io/badge/license-Apache-green.svg?style=flat)](https://raw.githubusercontent.com/lean-delivery/ansible-role-gitlab-runner/master/LICENSE)
+![Ansible](https://img.shields.io/badge/dynamic/json.svg?label=min_ansible_version&url=https%3A%2F%2Fgalaxy.ansible.com%2Fapi%2Fv1%2Froles%2F29089%2F&query=$.min_ansible_version)
 
 A brief description of the role goes here.
+## Summary
+
+This Ansible role has the following features:
+
+ - Install gitlab-runner
+ - Configure 2 runners with docker and shell executors
+
+You can fork and custom all, what you want
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
-
+- Version of the ansible for installation: 2.8
+ - **Supported OS**:
+   - EL (RedHat, CentOS)
+     - 7, 8
+   - Amazon2 Linux
+   - Ubuntu
+     - 16.04
+     - 18.04
+   - Debian
+     - 8, 9
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+- required
+  - `reg_token`  **need to set**
 
-Dependencies
-------------
+  Specific token from Gitlab CI/CD settings for runner configuring
+  - `runner_password`  **need to set**
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+  - Password for Unix gitlab-runner user, for perfect switching
+
+- defaults
+
+  - `runner_user`: **default:** gitlab-runner
+  - `home_dir`: **default:** /home/gitlab-runner
+  - `arch`: **default:** amd64
+  - `git_url`: **default:** https://gitlab.com/
+
+
+  - docker runner configure block:
+    - `docker_image_executor`: **default:**  docker:stable
+    - `docker_description`: **default:**  docker runner for gitlab
+    - `docker_tags`: **default:**  prod, docker-ansi
+    - `docker_run_untagged`: **default:**  true
+
+
+  - shell runner configure block:
+    - `shell_description`: **default:**  shell runner for gitlab
+    - `shell_tags`: **default:**  prod, shell-ansi
+    - `shel_run_untagged`: **default:**  false
+
+
 
 Example Playbook
 ----------------
@@ -24,15 +65,17 @@ Example Playbook
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
     - hosts: servers
+      gather_facts: yes
+      become: yes
+
       roles:
-         - { role: username.rolename, x: 42 }
+         - gitlab-runner-binary-ansible-role
 
 License
 -------
 
-BSD
+[![License](https://img.shields.io/badge/license-Apache-green.svg?style=flat)](https://raw.githubusercontent.com/lean-delivery/ansible-role-gitlab-runner/master/LICENSE)
 
 Author Information
 ------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Ivan Rezvetsov `ivanrezv@icloud.com`
