@@ -83,10 +83,10 @@
             #cache_valid_time: 3600
 
         - name: Immediately update pip for latest version
-            pip:
-              name:
-                - pip
-              state: latest
+          pip:
+            name:
+              - pip
+            state: latest
 
         - name: Install ansible and etc
           pip:
