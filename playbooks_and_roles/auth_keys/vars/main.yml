@@ -1,0 +1,12 @@
+---
+# vars file for auth_keys
+ssh_users:
+  - name: bob
+    key: "{{ lookup('file', '{{ playbook_dir }}/auth_keys/files/bob.pub') }}"
+    state: present
+  - name: aboba
+    key: "{{ lookup('file', '{{ playbook_dir }}/auth_keys/files/tom.pub') }}"
+    state: present
+  - name: aboba-test
+    key: "{{ lookup('file', '{{ playbook_dir }}/auth_keys/files/kek.pub') }}"
+    state: present
