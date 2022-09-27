@@ -1,0 +1,27 @@
+---
+- name: Install gitlab-runner binary
+  become: yes
+  get_url:
+    url : https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64
+    dest: /usr/local/bin/gitlab-runner
+    mode: 'u+x,g+x,o+x'
+
+
+- name: Create a gitlab-runner user
+  become: yes
+  user:
+    name: "{{ runner_user }}"
+    password: "{{ runner_password }}"
+    groups:
+     - docker
+     - sudo
+    state: present
+    shell: /bin/bash       # Defaults to /bin/bash
+    system: no             # Defaults to no
+    createhome: yes        # Defaults to yes
+    home: "{{ home_dir }}"  # Defaults to /home/<username>
+
+- name: Runner start
+  shell: |
+    sudo gitlab-runner install --user={{ runner_user }} --working-directory={{ home_dir }}; \
+    sudo gitlab-runner start

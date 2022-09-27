@@ -1,0 +1,4 @@
+---
+# defaults file for gitlab-runner
+runner_user: gitlab-runner
+home_dir: /home/gitlab-runner
