@@ -2,3 +2,17 @@
 # defaults file for gitlab-runner
 runner_user: gitlab-runner
 home_dir: /home/gitlab-runner
+
+## Git config
+git_url: https://gitlab.com/
+
+
+## Docker-runner configure
+docker_image_executor: docker:stable
+docker_description: docker runner for gitlab
+docker_tags: prod, docker-ansi
+docker_run_untagged: true
+## Shell-runner configure
+shell_description: shell runner for gitlab
+shell_tags: prod, shell-ansi
+shel_run_untagged: false

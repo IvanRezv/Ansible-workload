@@ -1,0 +1,54 @@
+---
+- name: Register gitlab docker runner
+    command: |
+      gitlab-runner register \
+      --non-interactive \
+      --url "{{ git_url }}" \
+      --registration-token "{{ reg_token }}" \
+      --executor "docker" \
+      --docker-image "{{ docker_image_executor }}" \
+      --description "{{ docker_description }}" \
+      --tag-list "{{ docker_tags }}" \
+      --docker-pull-policy always \
+      --docker-tlsverify false \
+      --run-untagged="{{ docker_run_untagged }}" \
+      --locked="false"
+
+- name: Register gitlab shell runner
+  command: |
+    gitlab-runner register \
+    --non-interactive \
+    --url "{{ git_url }}"  \
+    --registration-token "{{ reg_token }}" \
+    --executor "shell" \
+    --description "{{ shell_description }}" \
+    --tag-list "{{ shell_tags }}" \
+    --run-untagged="{{ shel_run_untagged }}" \
+    --locked="false"
+
+# CMD
+
+#gitlab-runner register --non-interactive -r 'asasdasdasd' \
+#      --name 'gitlab-runner-${HOSTNAME}' --tag-list 'swarm-runner' --url 'asdasdadassd' --executor docker \
+#      --docker-image 'adasdasda' --limit 4 --docker-tlsverify false --docker-privileged false \
+#      --docker-cpus 4 --docker-memory 8g --cache-type s3 --cache-s3-server-address 'asdasdasd'\
+#      --cache-s3-access-key 'asdasdasd' --cache-s3-secret-key 'asdasdasd' \
+#      --cache-s3-bucket-name 'swarmcache' --cache-s3-insecure false --cache-s3-cache-path 'swarmcache/' --cache-cache-shared true \
+#      --docker-cert-path /etc/gitlab-runner
+
+# Result
+
+#[[runners]]
+#  name = "gitlab-runner-${HOSTNAME}"
+#  limit = 4
+#  url = "asdasdasd"
+#  token = "asdasdasd"
+#  executor = "docker"
+#  [runners.docker]
+#    tls_verify = true
+#    image = "asdasdada"
+#    privileged = false
+#    disable_cache = false
+#    volumes = ["/cache"]
+#    shm_size = 0
+#  [runners.cache]
