@@ -1,0 +1,15 @@
+---
+# tasks file for bashrc
+- name: make sure function is in profile
+  blockinfile:
+    dest: ~/.profile
+    src: "files/.bashrc.j2"
+
+
+- name: run the function from shell after sourcing .profile
+  shell: source ~/.profile && my_test_func
+  register: func_result
+
+- name: check result
+  debug:
+    var: func_result.stdout

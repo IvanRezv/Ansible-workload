@@ -29,10 +29,12 @@
           yum:
             name:
               - curl
+              - git
               - wget
               - nano
               - apt-transport-https
               - ca-certificates
+              - openssh-server
               - curl
               - make
               - gnupg-agent
@@ -68,10 +70,12 @@
           apt:
             name:
               - curl
+              - git
               - wget
               - nano
               - apt-transport-https
               - ca-certificates
+              - openssh-server
               - curl
               - make
               - gnupg-agent

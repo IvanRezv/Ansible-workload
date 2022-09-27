@@ -1,0 +1,7 @@
+---
+
+- include_tasks: bashrc.yml
+  tags: bashrc
+
+- include_tasks: profile.yml
+  tags: profile
