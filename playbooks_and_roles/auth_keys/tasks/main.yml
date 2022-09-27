@@ -2,4 +2,4 @@
 # tasks file for auth_keys
 - name: Add ssh key.
   authorized_key: user={{ item.name }} key="{{ item.key }}" state={{ item.state }}
-  with_items: ssh_users
+  with_items: "{{ ssh_users }}"
