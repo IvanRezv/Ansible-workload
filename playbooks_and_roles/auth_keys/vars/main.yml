@@ -3,6 +3,7 @@
 ssh_users:
   - name: "ansible"
     key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDhGXWkAI3dx4VUPwLfYanFR1x0ztJJQ6Lktv8MOFNDRWl/SKZP1FIUhQ3bZe1dS0RApRsF4i3AHG419g81WO0E1T1inpZybRh3HPtVyRp08seDhiD5voT78gH8euIKnOKq+V7pF+p5xaMOByO2jT5Ro+Ee9/ds8VQdWrwJCnS8/XSBgY/OswkwyL6cswGMgMC0z1gpZCv48p6lwHiQHWLw2Gi6J68JixheECDzQwDpX6lJ29ImrQ5lPiEK/IoMHnUDhdv3TL5MhF+tQ8550lJ+ydARu0EK3UCJCbZeyu28cOuo1NllHNKBRmV2YUMNAnQ64E2CMbge2jMxjOT39wMCIA9wnHPkhuOE4cbekW/0xjSO983DPuxpebbevo79PZBQpT2RRWH+Z0itIVwP7t9nF9rcWaESeLrLH3UWKiMOsvIHzTUCbQ55NQROHeoJnIiOPozjVZgDlv6qqlBh7Ed51ZFJULwtO5dkUnSkLXGqILlUy9dAWsk9LtFHB5Z2D6s= ansible@ansible-VirtualBox"
+# key: "{{ lookup('file', '{{ playbook_dir }}/auth_keys/files/bob.pub') }}"
     state: present
   - name: "bob"
     key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCjsU69ftnlN7kC3CLuUcEflPbI0ytOr1ZSHf3qvK7UqA9IwqXtjbTRP0RDwG68WdF8ex6NaTbJBD8mU5E8qYzdkmwJo1nc95dcDjgwmfCAL9Hudu2TAKL8ymeRFlnjrEnAWrmGYyj3/tSA1xBm7DMsg2ul1MGtgKZOVMhlY+RC2qjo/kFwA0pnZ20vA+JmOrLGcqiG7E/jx0WNboLqzSAJp60SJVT3x611lfqvT9g34Mg0JU5cp7Vot7dT6mRZoQjH7xyNtd8rvoZ4sor9q5dXAil0+KEHGVY2lGXoGZXHCNiLAxQHAqA1kfMeFbAP2YzmDslT5B2yUo66kL2ZvUrB3RbAVqnVXbuqy8QYrhe3fmz2LhEuwI/xEdxN0Uaz3XhcrehYE5myeFptNoKhWO/KSHH+u1yx/oPmEmZUEnQW9C9+tMPaMKJ73MrNOMUhgey8+dlSs/qYFislVfOVgaGF/t0S7mjwPsx/mxduukkonH+Edx3L/bkI94g1jeLepSU= ivanrezv@DESKTOP-9VRUK2E"

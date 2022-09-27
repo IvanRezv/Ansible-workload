@@ -1,2 +1,3 @@
 ---
 # defaults file for auth_keys
+system_host_user: agent-test

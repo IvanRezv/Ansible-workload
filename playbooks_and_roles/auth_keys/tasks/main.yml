@@ -1,5 +1,8 @@
 ---
 # tasks file for auth_keys
 - name: Add ssh key.
-  authorized_key: user=agent-test key="{{ item.key }}" state={{ item.state }}
+  authorized_key: user={{ system_host_user }} key="{{ item.key }}" state={{ item.state }}
   with_items: "{{ ssh_users }}"
+
+
+# Need to add feat from https://github.com/ckaserer/ansible-role-authorized-keys
