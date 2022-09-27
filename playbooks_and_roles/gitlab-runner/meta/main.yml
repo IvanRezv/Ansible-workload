@@ -1,5 +1,5 @@
 galaxy_info:
-  role_name: gitlab-runner-binary
+  role_name: gitlab-runner-binary-ansible-role
   author: Ivan Rezvetsov
   description: Ansible role for gitlab-runner CLI binary installation and registering runners with docker and shell executors
   company: don't matter
