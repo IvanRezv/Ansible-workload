@@ -4,12 +4,16 @@
     path: "{{ helm_bin_path }}"
   register: helm_check
 
+- name: Check if Kubectl binary exists.
+  stat:
+    path: "{{ kubectl_bin_directory }}/kubectl"
+  register: kubectl_check
+
 - name: Check Helm version.
   command: "{{ helm_bin_path }} version"
   failed_when: false
   changed_when: false
   register: helm_existing_version
-
 
 - include_tasks: helm_install.yml
   tags: helm_install
@@ -19,3 +23,5 @@
 
 - include_tasks: "setup-{{ kubectl_download_filetype|lower }}.yml"
   tags: kubectl_install
+  when: >
+    not kubectl_check.stat.exists
