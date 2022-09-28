@@ -1,6 +1,6 @@
 - name: Download helm.
   unarchive:
-    src: "{{ helm_redis_filename }}"
+    src: "{{ helm_filename }}"
     dest: /tmp
     remote_src: true
     mode: 0755
