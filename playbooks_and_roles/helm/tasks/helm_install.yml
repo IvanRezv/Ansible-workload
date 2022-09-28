@@ -12,7 +12,7 @@
 
 - name: Copy helm binary into place.
   copy:
-    src: "/tmp/{{ helm_os }}-{{ architecture }}/helm"
+    src: "/tmp/{{ platform }}-{{ architecture }}/helm"
     dest: "{{ helm_bin_path }}"
     mode: "{{ binary_mode }}"
     remote_src: true
