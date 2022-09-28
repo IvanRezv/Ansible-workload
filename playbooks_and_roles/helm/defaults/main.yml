@@ -1,6 +1,6 @@
 ---
 # Helm version number
-helm_version: "3.9.4"
+helm_version: "v3.9.4"
 # "kubectl" version number
 kubectl_version: "1.25.0"
 
@@ -25,7 +25,7 @@ binary_mode: "0755"
 helm_mirror: 'https://get.helm.sh'
 # Dir where Helm should be installed
 helm_install_dir: '/usr/local/share/helm'
-
+helm_bin_path: '/usr/local/bin/helm'
 #===============================================================================================================Kubectl block===================================
 
 kubectl_download_filetype: "binary"

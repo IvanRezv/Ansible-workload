@@ -16,7 +16,7 @@
   become: yes
   file:
     src: '{{ helm_install_dir }}/helm'
-    dest: '/usr/local/bin/helm'
+    dest: '{{ helm_bin_path }}'
     state: link
     owner: "{{ owner }}"
     group: "{{ group }}"

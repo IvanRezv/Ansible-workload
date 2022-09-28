@@ -41,14 +41,6 @@
     msg: '{{ helm_current_version.stdout }}'
   when: helm_current_version.rc == 0
 
-- name: remove existing installation
-  become: yes
-  file:
-    path: '{{ helm_install_dir }}'
-    state: absent
-  when:
-    - helm_current_version.rc == 0
-    - helm_current_version.stdout != ('v' + helm_version)
 
 - name: create the Helm installation dir
   become: yes

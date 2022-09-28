@@ -1,9 +1,27 @@
 ---
+- name: Check if Helm binary exists.
+  stat:
+    path: "{{ helm_bin_path }}"
+  register: helm_check
+
+- name: Check Helm version.
+  command: "{{ helm_bin_path }} version"
+  failed_when: false
+  changed_when: false
+  register: helm_existing_version
+
+
 - include_tasks: helm_prepare.yml
   tags: helm_prepare
+  when: >
+    not helm_check.stat.exists
+    or helm_version not in helm_existing_version.stdout
 
 - include_tasks: helm_install.yml
   tags: helm_install
+  when: >
+    not helm_check.stat.exists
+    or helm_version not in helm_existing_version.stdout
 
 - include_tasks: "setup-{{ kubectl_download_filetype|lower }}.yml"
   tags: kubectl_install
