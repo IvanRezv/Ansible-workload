@@ -1,23 +1,20 @@
 ---
-- name: install Helm
-  become: yes
+- name: Download helm.
   unarchive:
-    src: '{{ download_dir }}/{{ helm_redis_filename }}'
-    remote_src: yes
-    dest: '{{ helm_install_dir }}'
-    extra_opts:
-      - '--strip-components=1'
-    owner: "{{ owner }}"
-    group: "{{ group }}"
-    mode: 'o-w'
-    creates: '{{ helm_install_dir }}/helm'
-
-- name: create helm link
-  become: yes
-  file:
-    src: '{{ helm_install_dir }}/helm'
-    dest: '{{ helm_bin_path }}'
-    state: link
-    owner: "{{ owner }}"
-    group: "{{ group }}"
+    src: "{{ helm_filename }}"
+    dest: /tmp
+    remote_src: true
     mode: "{{ binary_mode }}"
+  register: helm_download
+  when: >
+    not helm_check.stat.exists
+    or helm_version not in helm_existing_version.stdout
+
+- name: Copy helm binary into place.
+  copy:
+    src: "/tmp/{{ helm_os }}-{{ architecture }}/helm"
+    dest: "{{ helm_bin_path }}"
+    mode: "{{ binary_mode }}"
+    remote_src: true
+  become: true
+  when: helm_download is changed
