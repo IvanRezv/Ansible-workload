@@ -3,4 +3,4 @@
 # default for the OS (see defaults per OS in `vars` directory).
 # java_packages: []
 
-java_home: ""
+java_home: "/usr/bin/java"
