@@ -1,0 +1,19 @@
+- name: Download helm.
+  unarchive:
+    src: "{{ helm_redis_filename }}"
+    dest: /tmp
+    remote_src: true
+    mode: 0755
+  register: helm_download
+  when: >
+    not helm_check.stat.exists
+    or helm_version not in helm_existing_version.stdout
+
+- name: Copy helm binary into place.
+  copy:
+    src: "/tmp/{{ helm_os }}-{{ architecture }}/helm"
+    dest: "{{ helm_bin_path }}"
+    mode: 0755
+    remote_src: true
+  become: true
+  when: helm_download is changed

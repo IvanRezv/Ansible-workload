@@ -11,17 +11,20 @@
   register: helm_existing_version
 
 
-- include_tasks: helm_prepare.yml
-  tags: helm_prepare
-  when: >
-    not helm_check.stat.exists
-    or helm_version not in helm_existing_version.stdout
+#- include_tasks: helm_prepare.yml
+#  tags: helm_prepare
 
-- include_tasks: helm_install.yml
+- include_tasks: helm_feat_install.yml
   tags: helm_install
   when: >
     not helm_check.stat.exists
     or helm_version not in helm_existing_version.stdout
+
+#- include_tasks: helm_install.yml
+#  tags: helm_install
+#  when: >
+#    not helm_check.stat.exists
+#    or helm_version not in helm_existing_version.stdout
 
 - include_tasks: "setup-{{ kubectl_download_filetype|lower }}.yml"
   tags: kubectl_install
