@@ -4,7 +4,8 @@
   become: true
 
   vars:
-    jenkins_http_port: 8081
+    jenkins_hostname: {{ public_ip_addr }}
+    jenkins_http_port: 8080
 
   pre_tasks:
     - include_tasks: debian-setup.yml
@@ -17,7 +18,7 @@
   post_tasks:
     - name: Ensure Jenkins is running on the specified port.
       uri:
-        url: "http://127.0.0.1:{{ jenkins_http_port }}"
+        url: "http://{{ public_ip_addr }}:{{ jenkins_http_port }}"
         status_code: 200
       register: result
       until: result.status == 200
