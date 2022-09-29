@@ -46,10 +46,10 @@ repos:
       - id: checkov
         args: [-d .]
 
-  - repo: https://github.com/Yelp/detect-secrets.git
-    rev: v1.3.0
-    hooks:
-      - id: detect-secrets
+#  - repo: https://github.com/Yelp/detect-secrets.git
+#    rev: v1.3.0
+#    hooks:
+#      - id: detect-secrets
 
 
   - repo: https://github.com/Lucas-C/pre-commit-hooks-safety.git
