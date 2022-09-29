@@ -3,13 +3,13 @@
   hosts: vpn
   become: true
 
-  vars:
-    jenkins_hostname: "{{ public_ip_addr }}"
-    jenkins_http_port: 8080
-
   pre_tasks:
     - include_tasks: debian-setup.yml
       when: ansible_os_family == 'Debian'
+
+  vars:
+    jenkins_hostname: "{{ public_ip_addr }}"
+    jenkins_http_port: 8080
 
   roles:
     - java
